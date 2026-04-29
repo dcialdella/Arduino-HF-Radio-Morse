@@ -11,40 +11,54 @@ El Arduino recibe caracteres por puerto serie y genera codigo Morse mediante:
 ## Conexiones
 
 ```
-                    Arduino Uno
-                 +---------------+
-                 |               |
-                 |           +5V |----+
-                 |               |    |
-                 |            GND |----+-- GND del relay
-                 |               |    |
-                 |            Pin 8 |----+-- Buzzer (+)
-                 |               |    |
-                 |           Pin 10 |----+-- Relay IN1
-                 |               |    |
-                 |           Pin 3 |----+-- Boton CQ (otro lado a GND)
-                 |               |
-                 +---------------+
-
-                    Relay Module
-                 +---------------+
-                 |               |
-                 |           VCC |----+-- +5V Arduino
-                 |           GND |----+-- GND Arduino
-                 |           IN1 |----+-- Pin 10 Arduino
-                 |               |
-                 |       NO (NC) |----+-- Keyer Tip (Radio)
-                 |       COM (C) |----+-- Keyer Sleeve/GND (Radio)
-                 +---------------+
-
-                    Xiegu G90
-                 +---------------+
-                 |               |
-                 |        KEYER + |----+-- Relay NO
-                 |        KEYER - |----+-- Relay COM (GND)
-                 |               |
-                 +---------------+
++----------------------------------------------------------------------+
+|                            ARDUINO UNO                               |
+|                                                                      |
+|   +5V  o------------------------------> Relay VCC                    |
+|                                                                      |
+|   GND  o--------------------+--------> Relay GND                    |
+|         |                    |--------> G90 KEYER -                  |
+|         |                    |                                      |
+|  Pin 8 o-------[Buzzer]-----+                                      |
+|         |           (+)                                                   |
+|         |           (-)                                                   |
+|         |                                                                 |
+|  Pin 10 o------------------------> Relay IN1                            |
+|         |                                                                 |
+|  Pin 3  o---[CQ Button]--- GND    (INPUT_PULLUP, no resistor needed)  |
+|                                                                      |
++----------------------------------------------------------------------+
+            |                  |                    |
+            v                  v                    v
++----------------------------------------------------------------------+
+|                           RELAY MODULE                               |
+|                                                                      |
+|  VCC o<--------------------- Arduino +5V                              |
+|                                                                      |
+|  GND o<--------------------- Arduino GND                              |
+|                                                                      |
+|  IN1 o<--------------------- Arduino Pin 10                          |
+|                                                                      |
+|  NO  o----------------------------------------------------> G90 KEYER +
+|                                                                      |
+|  COM o----------------------------------------------------> G90 KEYER -
+|                                                                      |
++----------------------------------------------------------------------+
+            |                  |
+            v                  v
++----------------------------------------------------------------------+
+|                            XIEGU G90                                 |
+|                                                                      |
+|  KEYER + o<-------------------- Relay NO                              |
+|                                                                      |
+|  KEYER - o<-------------------- Relay COM / Arduino GND              |
+|                                                                      |
++----------------------------------------------------------------------+
 ```
+
+### Modulo Relay 5V (Imagen de referencia)
+
+![Relay 5V Module](relay-5v-arduino-mega.png)
 
 ## Pines
 
