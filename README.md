@@ -62,6 +62,10 @@ El Arduino recibe caracteres por puerto serie y genera código Morse mediante:
 
 ![Relay 5V Module](relay-5v-arduino-mega.png)
 
+### Equipo Funcionando
+
+![Equipo en funcionamiento](running.jpeg)
+
 **Especificaciones del Relay:**
 - Voltaje de operación: 5V DC
 - Señal de control: 3.3V / 5V compatible
@@ -96,7 +100,7 @@ Configuración de tiempos según estándar internacional Morse:
 | Raya (dash)               | 3x       | 180ms              |
 | Espacio entre elementos   | 1x       | 60ms               |
 | Espacio entre letras      | 3x       | 180ms              |
-| Espacio entre palabras    | 7x       | 420ms              |
+| Espacio entre palabras | 7x       | 420ms              |
 
 La variable `timeUnit` (default 60ms) controla la velocidad. Ajustar según necesidad:
 - 50ms = ~24 WPM (palabras por minuto)

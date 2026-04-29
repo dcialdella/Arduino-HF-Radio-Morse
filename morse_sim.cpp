@@ -107,13 +107,13 @@ void dash() {
 }
 
 void letterPause() {
-    std::cout << "  [LETTER PAUSE 2x]" << std::endl;
-    delay(timeUnit * 2);
+    std::cout << "  [LETTER PAUSE 3x]" << std::endl;
+    delay(timeUnit * 3);
 }
 
 void wordPause() {
-    std::cout << "[WORD PAUSE 4x]" << std::endl;
-    delay(timeUnit * 4);
+    std::cout << "[WORD PAUSE 7x]" << std::endl;
+    delay(timeUnit * 7);
 }
 
 // Funciones de letras

@@ -147,9 +147,9 @@ void dash() {
 }
 
 void letterPause() {
-  delay(timeUnit * 2);
+  delay(timeUnit * 3);
 }
 
 void wordPause() {
-  delay(timeUnit * 4);
+  delay(timeUnit * 7);
 }
