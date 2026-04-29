@@ -22,7 +22,7 @@ El Arduino recibe caracteres por puerto serie y genera codigo Morse mediante:
                  |               |    |
                  |           Pin 10 |----+-- Relay IN1
                  |               |    |
-                 |            Pin 3 |----+-- Boton CQ (otro lado a +5V)
+                 |           Pin 3 |----+-- Boton CQ (otro lado a GND)
                  |               |
                  +---------------+
 
@@ -52,7 +52,7 @@ El Arduino recibe caracteres por puerto serie y genera codigo Morse mediante:
 |-------------|------------------|-------------------------|
 | 8           | Buzzer           | Altavoz/Piezo           |
 | 10          | Relay Keying     | IN1 del modulo relay    |
-| 3           | Boton CQ         | Boton (pull-up interno) |
+| 3           | Boton CQ         | Boton a GND (INPUT_PULLUP) |
 | GND         | Tierra           | GND relay y radio       |
 
 ## Uso

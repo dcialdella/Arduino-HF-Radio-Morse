@@ -21,16 +21,16 @@ void setup() {
   Serial.begin(9600);
   pinMode(buzzer, OUTPUT);
   pinMode(relay, OUTPUT);
-  pinMode(cqkey, INPUT);
+  pinMode(cqkey, INPUT_PULLUP);
   Serial.println("Ready (!=CQ)...");
 }
 
 void loop() {
-  if (digitalRead(cqkey) == HIGH) {
+  if (digitalRead(cqkey) == LOW) {
     delay(50);
-    if (digitalRead(cqkey) == HIGH) {
+    if (digitalRead(cqkey) == LOW) {
       cqcqcq();
-      while (digitalRead(cqkey) == HIGH) delay(10);
+      while (digitalRead(cqkey) == LOW) delay(10);
     }
   }
 
