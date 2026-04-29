@@ -25,6 +25,8 @@ El Arduino recibe caracteres por puerto serie y genera código Morse mediante:
 |         |                    |                                      |
 |  Pin 10 o------------------------> Relay IN1 (Keying signal)       |
 |         |                    |                                      |
+|  Pin 13 o---[LED+220Ω]--- GND                                      |
+|         |                    |                                      |
 |  Pin 3  o---[CQ Button]--- GND                                    |
 |             (INPUT_PULLUP,                                        |
 |              no resistor needed)                                   |
@@ -78,13 +80,14 @@ El Arduino recibe caracteres por puerto serie y genera código Morse mediante:
 |-------------|-----------------|----------------------------|----------------|
 | 8           | Buzzer          | Altavoz/Piezo (+)          | OUTPUT         |
 | 10          | Relay Keying    | IN1 del módulo relay       | OUTPUT         |
+| 13          | LED de estado   | LED con resistencia 220Ω   | OUTPUT         |
 | 3           | Botón CQ        | Botón a GND                | INPUT_PULLUP   |
 | GND         | Tierra          | GND relay y radio          | -              |
 | +5V         | Alimentación    | VCC del relay              | -              |
 
 ## Uso
 
-1. Cargar el código `morse.cpp` en el Arduino usando el IDE de Arduino
+1. Cargar el código `morse/morse.ino` en el Arduino usando el IDE de Arduino
 2. Abrir el monitor serie (9600 baudios)
 3. Escribir texto y enviar - el Arduino genera Morse automáticamente
 4. Presionar el botón en pin 3 para enviar CQ automático (CQ CQ CQ EA4HUK...)
@@ -92,27 +95,28 @@ El Arduino recibe caracteres por puerto serie y genera código Morse mediante:
 
 ## Timing y Velocidad
 
-Configuración de tiempos según estándar internacional Morse:
+Configuracion de tiempos segun estandar internacional Morse:
 
 | Elemento                  | Unidades | Tiempo (60ms/unit) |
 |---------------------------|----------|---------------------|
-| Punto (dot)               | 1x       | 60ms               |
-| Raya (dash)               | 3x       | 180ms              |
-| Espacio entre elementos   | 1x       | 60ms               |
-| Espacio entre letras      | 3x       | 180ms              |
-| Espacio entre palabras | 7x       | 420ms              |
+| Punto (dot)               | 1x ON    | 60ms                |
+| Raya (dash)               | 3x ON    | 180ms               |
+| Espacio entre elementos   | 1x       | 60ms                |
+| Espacio entre letras      | 3x       | 180ms               |
+| Espacio entre palabras    | 7x       | 420ms               |
 
-La variable `timeUnit` (default 60ms) controla la velocidad. Ajustar según necesidad:
-- 50ms = ~24 WPM (palabras por minuto)
+La variable `timeUnit` (default 60ms) controla la velocidad. Ajustar modificando el codigo en `morse.ino`:
+- 50ms = ~24 WPM
 - 60ms = ~20 WPM
 - 100ms = ~12 WPM
 
 ## Caracteres Soportados
 
-- **Letras:** A-Z (mayúsculas y minúsculas)
+- **Letras:** A-Z (se convierten automáticamente a mayúsculas)
 - **Números:** 0-9
-- **Espacio:** Pausa entre palabras (7 unidades)
-- **Comando:** `!` dispara secuencia CQ automática (CQ CQ CQ EA4HUK CQ CQ CQ)
+- **Espacio:** Pausa entre palabras
+- **Comando `!`:** Dispara secuencia CQ automática (CQ CQ CQ EA4HUK CQ CQ CQ)
+- **Caracteres no soportados:** Se ignoran y se muestra `?` en el monitor serie
 
 ## Simulador (Pruebas sin Hardware)
 
@@ -136,10 +140,12 @@ El simulador muestra:
 
 ```
 Arduino-HF-Radio-Morse/
-├── morse.cpp                    # Código principal para Arduino
-├── morse_sim.cpp                # Simulador para pruebas en PC
-├── relay-5v-arduino-mega.png   # Imagen del módulo relay
-└── README.md                    # Esta documentación
+├── morse/
+│   └── morse.ino              # Código principal para Arduino
+├── morse_sim.cpp              # Simulador para pruebas en PC
+├── running.jpeg               # Foto del equipo funcionando
+├── relay-5v-arduino-mega.png  # Imagen del módulo relay
+└── README.md                  # Esta documentación
 ```
 
 ## Solución de Problemas
