@@ -213,6 +213,7 @@ void loop() {
         std::cin >> input;
         processInput(input);
     }
+    usleep(100000);
 }
 
 int main() {
@@ -225,13 +226,9 @@ int main() {
 
     setup();
 
-    char continuar = 's';
-    while (continuar != 'n' && continuar != 'N') {
+    while (true) {
         loop();
-        std::cout << "\n¿Continuar? (s/n): " << std::flush;
-        std::cin >> continuar;
     }
 
-    std::cout << "Simulacion terminada." << std::endl;
     return 0;
 }
